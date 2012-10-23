@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <script src="lib/jquery.js"></script>
+        <script src="lib/underscore.js"></script>
+        <script src="lib/backbone.js"></script>
+        <script src="ticker.js"></script>
+
+        <title>Stock Ticker</title>
+    </head>
+    <body class="show">
+        <!-- Fake -->
+        <div id="theSymbol"></div>
+
+        <div id="tickerContainer">
+
+            <div id="symbolEntry">
+                Enter Symbol:
+                <input type="text" id="theSymbol" />
+                <button id="addSymbolButton">Add</button>
+            </div>
+
+            <ul id="portfolio">
+
+            </ul>
+
+        </div>
+
+    </body>
+
+    <script>
+    $(function() {
+        var App = window.App || {};
+
+        var stocks = new App.StockCollection([
+            { symbol: "MSFT" }
+        ]);
+
+        tickerView = new window.App.TickerView({
+            el: $('#tickerContainer'),
+            collection: stocks
+        }).render()
+    });
+    </script>
+
+    <script id="itemTemplate">
+        <ul><%= symbol %> <button class="remove">X</button></ul>
+    </script>
+</html>
